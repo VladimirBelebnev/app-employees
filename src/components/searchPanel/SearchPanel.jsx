@@ -11,7 +11,7 @@ const SearchPanel = ({ onUpdateSearch }) => {
 
     useEffect(() => {
         onUpdateSearch(term);
-    });
+    })
     
     return (
         <input 
