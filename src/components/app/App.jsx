@@ -35,22 +35,13 @@ const App = () => {
     };
 
     const onToggleProp = (id, prop) => {
-        // this.setState(({ data }) => ({
-        //     data: data.map(item => {
-        //         if (item.id === id) {
-        //             return { ...item, [prop]: !item[prop] }
-        //         }
-        //         return item;
-        //     })
-        // }))
-        setDataFunc([...data => {
-            data.map(item => {
+        setDataFunc([...data.map(item => {
                 if (item.id === id) {
                     return { ...item, [prop]: !item[prop] }
                 }
                 return item;
             })
-        }]);
+        ]);
     };
 
     const searchEmp = (items, term) => {
@@ -72,14 +63,14 @@ const App = () => {
             case 'rise': 
                 return items.filter(item => item.rise);
             case 'moreThen1000':
-                return items.filter(item => item.salary > 1000);
+                return items.filter(item => item.salary.join() > 1000);
             default:
                 return items;
         }
     };
 
     const onFilterSelect = (filter) => {
-        setFilter({filter});
+        setFilter(filter);
     };
 
     const employees = data.length;
@@ -91,7 +82,6 @@ const App = () => {
             <AppInfo 
                 employees={employees} 
                 increased={increased}/>
-
             <div className="search-panel">
                 <SearchPanel 
                     onUpdateSearch={onUpdateSearch}/>
@@ -99,7 +89,6 @@ const App = () => {
                     filter={filter}
                     onFilterSelect={onFilterSelect}/>
             </div>
-
             <EmployeesList
                 data={visibleData}
                 onDelete={deleteItem} 

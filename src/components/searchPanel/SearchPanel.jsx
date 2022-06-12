@@ -11,7 +11,8 @@ const SearchPanel = ({ onUpdateSearch }) => {
 
     useEffect(() => {
         onUpdateSearch(term);
-    })
+        // eslint-disable-next-line
+    }, [term]);
     
     return (
         <input 
