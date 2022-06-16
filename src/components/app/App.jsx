@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import AppInfo from '../appInfo/AppInfo';
 import SearchPanel from '../searchPanel/SearchPanel';
 import AppFilter from '../appFilter/AppFilter';
@@ -19,7 +18,7 @@ const App = () => {
         localStorage.setItem('employees', JSON.stringify(arr));
     };
 
-    const deleteItem = (id) => {
+    const onDeleteItem = (id) => {
         setDataFunc([...data.filter(item => item.id !== id)]);
     };
 
@@ -38,6 +37,16 @@ const App = () => {
         setDataFunc([...data.map(item => {
                 if (item.id === id) {
                     return { ...item, [prop]: !item[prop] }
+                }
+                return item;
+            })
+        ]);
+    };
+
+    const onChangeSalary = (id, valueSalary) => {
+        setDataFunc([...data.map(item => {
+                if (item.id === id) {
+                    item.salary = valueSalary;
                 }
                 return item;
             })
@@ -63,7 +72,7 @@ const App = () => {
             case 'rise': 
                 return items.filter(item => item.rise);
             case 'moreThen1000':
-                return items.filter(item => item.salary.join() > 1000);
+                return items.filter(item => item.salary.indexOf('$') > -1 ? item.salary.replace(/[$]/gi, '') > 1000 : item.salary > 1000);
             default:
                 return items;
         }
@@ -91,8 +100,9 @@ const App = () => {
             </div>
             <EmployeesList
                 data={visibleData}
-                onDelete={deleteItem} 
-                onToggleProp={onToggleProp} />
+                onDeleteItem={onDeleteItem} 
+                onToggleProp={onToggleProp} 
+                onChangeSalary={onChangeSalary} />
             <EmployeesAddForm 
                 onAdd={addItem}/>
         </div>
