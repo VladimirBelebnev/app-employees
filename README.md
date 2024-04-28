@@ -1,5 +1,5 @@
-# App employees
+# Приложение React по учету сотрудников
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Учебный проект
 
-[Employees App](https://vladimirbelebnev.github.io/app-employees/).
+https://vladimirbelebnev.github.io/app-employees/
